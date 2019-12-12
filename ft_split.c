@@ -6,13 +6,13 @@
 /*   By: bemoreau <bemoreau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/09 14:47:32 by bemoreau          #+#    #+#             */
-/*   Updated: 2019/11/12 15:43:12 by bemoreau         ###   ########.fr       */
+/*   Updated: 2019/11/16 11:33:37 by bemoreau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int		ft_count_word(const char *str, char charset)
+static int		ft_count_word(char const *str, char charset)
 {
 	int count;
 	int i;
@@ -31,35 +31,33 @@ static int		ft_count_word(const char *str, char charset)
 	return (count);
 }
 
-static int		ft_len_word(const char *str, char charset)
+static int		ft_len_word(char const *str, char charset, int *p)
 {
-	static int	i;
 	int			count;
 
 	count = 0;
-	while (str[i] && str[i] == charset)
-		i++;
-	while (str[i] && str[i] != charset)
+	while (str[(*p)] && str[(*p)] == charset)
+		(*p) = (*p) + 1;
+	while (str[(*p)] && str[(*p)] != charset)
 	{
 		count++;
-		i++;
+		(*p) = (*p) + 1;
 	}
 	return (count);
 }
 
-static void		ft_fill(char *tab, const char *str, char charset)
+static void		ft_fill(char *tab, char const *str, char charset, int *p)
 {
-	static int	i;
 	int			j;
 
 	j = 0;
-	while (str[i] && str[i] == charset)
-		i++;
-	while (str[i] && str[i] != charset)
+	while (str[(*p)] && str[(*p)] == charset)
+		(*p) = (*p) + 1;
+	while (str[(*p)] && str[(*p)] != charset)
 	{
-		tab[j] = str[i];
+		tab[j] = str[(*p)];
 		j++;
-		i++;
+		(*p) = (*p) + 1;
 	}
 }
 
@@ -76,24 +74,26 @@ char			**ft_split(char const *str, char charset)
 	char	**tab;
 	int		i;
 	int		tmp;
-	int		count;
+	int		p;
 
 	if (!str)
 		return (NULL);
-	count = ft_count_word(str, charset);
-	if (!(tab = (char **)malloc(sizeof(char *) * (count + 1))))
+	if (!(tab = (char **)malloc(sizeof(char *) *
+		(ft_count_word(str, charset) + 1))))
 		return (NULL);
-	tab[count] = 0;
+	tab[ft_count_word(str, charset)] = 0;
 	i = 0;
-	while (i < count)
+	p = 0;
+	while (i < ft_count_word(str, charset))
 	{
-		tmp = ft_len_word(str, charset);
+		tmp = ft_len_word(str, charset, &p);
 		if (!(tab[i] = (char *)malloc(sizeof(char) * (tmp + 1))))
 			return (ft_free(&tab, i));
 		tab[i++][tmp] = '\0';
 	}
 	i = 0;
-	while (i <= count)
-		ft_fill(tab[i++], str, charset);
+	p = 0;
+	while (i <= ft_count_word(str, charset))
+		ft_fill(tab[i++], str, charset, &p);
 	return (tab);
 }

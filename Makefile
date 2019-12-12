@@ -6,21 +6,21 @@
 #    By: bemoreau <bemoreau@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/13 19:04:13 by bemoreau          #+#    #+#              #
-#    Updated: 2019/11/11 17:53:27 by bemoreau         ###   ########.fr        #
+#    Updated: 2019/11/16 14:25:40 by bemoreau         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 
-SRCS_B = 	./ft_lstmap_bonus.c\
-			./ft_lstadd_back_bonus.c\
-			./ft_lstadd_front_bonus.c\
-			./ft_lstclear_bonus.c\
-			./ft_lstdelone_bonus.c\
-			./ft_lstiter_bonus.c\
-			./ft_lstlast_bonus.c\
-			./ft_lstnew_bonus.c\
-			./ft_lstsize_bonus.c\
+SRCS_B = 	./ft_lstmap.c\
+			./ft_lstadd_back.c\
+			./ft_lstadd_front.c\
+			./ft_lstclear.c\
+			./ft_lstdelone.c\
+			./ft_lstiter.c\
+			./ft_lstlast.c\
+			./ft_lstnew.c\
+			./ft_lstsize.c\
 			./ft_charset_bonus.c\
 			./ft_putendl_bonus.c\
 			./ft_putchar_bonus.c\
@@ -69,7 +69,7 @@ FLAGS = -Wall -Wextra -Werror
 
 OBJ = 		$(SRCS:.c=.o)
 
-OBJ_B = 		$(SRCS_B:.c=.o)
+OBJ_B = 	$(SRCS_B:.c=.o)
 
 .c.o:		${SRCS}
 			$(CC) $(FLAGS) -c $< -o ${<:.c=.o}

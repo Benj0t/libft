@@ -6,7 +6,7 @@
 /*   By: bemoreau <bemoreau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 09:47:02 by bemoreau          #+#    #+#             */
-/*   Updated: 2019/11/09 17:03:59 by bemoreau         ###   ########.fr       */
+/*   Updated: 2019/11/16 13:31:02 by bemoreau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,10 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	i = 0;
 	j = 0;
 	while (s1[j])
-	{
-		pt[i] = s1[j];
-		++i;
-		++j;
-	}
+		pt[i++] = s1[j++];
 	j = 0;
 	while (s2[j])
-	{
-		pt[i] = s2[j];
-		++i;
-		++j;
-	}
+		pt[i++] = s2[j++];
 	pt[i] = '\0';
 	return (pt);
 }

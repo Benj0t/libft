@@ -6,7 +6,7 @@
 /*   By: bemoreau <bemoreau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 15:12:02 by bemoreau          #+#    #+#             */
-/*   Updated: 2019/11/12 17:50:53 by bemoreau         ###   ########.fr       */
+/*   Updated: 2019/11/16 15:54:37 by bemoreau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,6 @@ char				*ft_strnstr(const char *str,
 					const char *to_find, size_t len);
 char				*ft_strdup(const char *src);
 char				*ft_strjoin(char const *s1, char const *s2);
-char				**ft_split(const char *str, char charset);
+char				**ft_split(char const *str, char charset);
 
 #endif
